@@ -1,4 +1,4 @@
-class ScratchFetch {
+class math {
     constructor() {
     }
     
@@ -7,11 +7,19 @@ class ScratchFetch {
             "id": "Math",
             "name": "Math",
             "blocks": [
+                {
                  "opcode": "pi",
                  "blockType": "reporter",
                  "text": "pi",
-                 "arguments": {}   
+                 "arguments": {}
+                }
+                {
+                    "opcode": "whenIsEqual",
+                    "blockType": Scratch.,
+                    "text": "when [number] [operation] [numberTwo] is equal to [answer]"
+                }
             ]
+            
         }
     }
     pi(){
@@ -20,4 +28,4 @@ class ScratchFetch {
   
 }
 
-Scratch.extensions.register(new ScratchFetch())
+Scratch.extensions.register(new math())
