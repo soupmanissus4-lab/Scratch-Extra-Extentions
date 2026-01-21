@@ -29,7 +29,8 @@ class OperatorsPlus {
                 }
                 {
                     opcode: 'xyCheck',
-                    text: 'wait until x [inequality] than [xMin] or y [inequalityTwo] than [yMin]',
+                    blockType: Scratch.BlockType.BOOLEAN,
+                    text: 'is x [inequality] than [xMin] or y [inequalityTwo] than [yMin]?',
                     arguments: {
                         inequality: {
                             type: Scratch.ArgumentType.STRING,
