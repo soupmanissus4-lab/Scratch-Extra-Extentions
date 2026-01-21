@@ -19,7 +19,7 @@ class OperatorsPlus {
                     }
                 },
                 {
-                    opcode: 'SinAndCosStuff',
+                    opcode: 'OperationsWith',
                     blockType: Scratch.BlockType.REPORTER,
                     text: '[OPERATION] of [NUMBER]',
                     arguments: {
@@ -27,11 +27,35 @@ class OperatorsPlus {
                         OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
                     }
                 }
+                {
+                    opcode: 'xyCheck',
+                    text: 'wait until x [inequality] than [xMin] or y [inequalityTwo] than [yMin]',
+                    arguments: {
+                        inequality: {
+                            type: Scratch.ArgumentType.STRING,
+                            menu: 'inequalitySigns'
+                        },
+                        xMin:{
+                            type: Scratch.ArgumentType.NUMBER
+                        },
+                        inequalityTwo: {
+                            type: Scratch.ArgumentType.STRING,
+                            menu: 'inequalitySigns'
+                        },
+                        yMin:{
+                            type: Scratch.ArgumentType.NUMBER
+                        }
+                    }
+                }
             ],
             menus: {
                 signsOfCosAndSinAndsoOn: {
                     acceptReporters: false,
                     items: ['cos', 'sin', 'tan', 'sqrt']
+                }
+                inequalitySigns: {
+                    acceptReporters: false,
+                    items: ['>','<','=','>=','<=']    
                 }
             }
         };
@@ -61,6 +85,34 @@ class OperatorsPlus {
             default:
                 return NaN;
         }
+    }
+    xyCheck(args) {
+    const xMin = args.xMin;
+    const inequality = args.inequality;
+    const yMin = args.yMin;
+    const inequalityTwo = args.inequalityTwo;
+
+    let conditionOne = false;
+    switch (inequality) {
+        case '>':  conditionOne = xMin > 0; break;
+        case '<':  conditionOne = xMin < 0; break;
+        case '=':  conditionOne = xMin === 0; break;
+        case '>=': conditionOne = xMin >= 0; break;
+        case '<=': conditionOne = xMin <= 0; break;
+        default:   conditionOne = false;
+    }
+    let conditionTwo = false;
+    switch (inequalityTwo) {
+        case '>':  conditionTwo = yMin > 0; break;
+        case '<':  conditionTwo = yMin < 0; break;
+        case '=':  conditionTwo = yMin === 0; break;
+        case '>=': conditionTwo = yMin >= 0; break;
+        case '<=': conditionTwo = yMin <= 0; break;
+        default:   conditionTwo = false;
+    }
+    return conditionOne && conditionTwo;
+}
+
     }
 }
 
