@@ -52,7 +52,7 @@ class OperatorsPlus {
             menus: {
                 signsOfCosAndSinAndsoOn: {
                     acceptReporters: false,
-                    items: ['cos', 'sin', 'tan', 'sqrt']
+                    items: ['cos', 'sin', 'tan', 'sqrt','abs']
                 }
                 inequalitySigns: {
                     acceptReporters: false,
@@ -83,6 +83,8 @@ class OperatorsPlus {
                 return Math.tan(num);
             case 'sqrt':
                 return Math.sqrt(num);
+            case 'abs':
+                return Math.abs(num)
             default:
                 return NaN;
         }
