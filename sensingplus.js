@@ -8,7 +8,7 @@ getInfo() {
             "name": "Sensing Plus",
             "blocks": [{
                         "opcode": "buttonPressedReleased",
-                        "blockType": "hat",
+                        "blockType": "event",
                         "text": "when key [letter] [action]",
                         "arguments": {
                             "letter": {
