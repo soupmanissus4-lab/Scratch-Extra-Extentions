@@ -30,7 +30,7 @@ class OperatorsPlus {
         {
           opcode: 'xyCheck',
           blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is x [inequality] [xMin] or y [inequalityTwo] [yMin]?',
+          text: 'is x position [inequality] [xMin] or y position [inequalityTwo] [yMin]?',
           arguments: {
             inequality: { type: Scratch.ArgumentType.STRING, menu: 'inequalitySigns' },
             xMin: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
