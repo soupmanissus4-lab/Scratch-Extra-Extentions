@@ -53,11 +53,11 @@ class OperatorsPlus {
                 signsOfCosAndSinAndsoOn: {
                     acceptReporters: false,
                     items: ['cos', 'sin', 'tan', 'sqrt','abs']
-                }
+                },
                 inequalitySigns: {
                     acceptReporters: false,
                     items: ['>','<','=','>=','<=']    
-                }
+                },
             }
         };
     }
