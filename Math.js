@@ -15,8 +15,8 @@ class math {
                 }
                 {
                     "opcode": "whenIsEqual",
-                    "blockType": Scratch.,
-                    "text": "when [number] [operation] [numberTwo] is equal to [answer]"
+                    "blockType": "boolean",
+                    "text": "is [number] [operation] [numberTwo] is equal to [answer]"
                 }
             ]
             
