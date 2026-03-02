@@ -27,6 +27,16 @@ class OperatorsPlus {
             OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
           }
         },
+        {
+          opcode: 'Isbetween',
+          blockType: Scratch.BlockType.BOOLEAN,
+          text: 'is [num] inbetween [min] and [max]',
+          arguments: {
+            num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 },
+            min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
+            max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
+          }
+        },
       ],
       menus: {
         signsOfCosAndSinAndsoOn: {
@@ -59,6 +69,19 @@ class OperatorsPlus {
       case 'sqrt': return Math.sqrt(num);
       case 'abs': return Math.abs(num);
       default: return 0;
+    }
+    
+    Isbetween(args){
+      const num = args.num;
+      const min = args.min;
+      const max = args.max;
+      if(min<max){
+        return num>=min && num<=max
+      }
+      else{
+        return num<=min && num>=max
+      }
+      return false;
     }
   }
 }
