@@ -36,7 +36,15 @@ class OperatorsPlus {
                         min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, 
                         max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
                     }
-                }
+                },{
+                  opcode: 'directionOfXY',
+                  blockType: Scratch.BlockType.REPORTER,
+                  text: 'the direction of x: [wantedX] and y: [wantedY] from me',
+                  arguments: {
+                      wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 90},
+                      wantedY: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
+                  }
+                },
             ], 
             menus: {
                 signsOfCosAndSinAndsoOn: {
@@ -81,6 +89,10 @@ class OperatorsPlus {
         else if(min>=max){
             return num <= min && num >= max; 
         }
+    }
+    directionOfXY(args){
+        const {x, y} = util.target;
+        return Math.atan2(wantedY - y, wantedX - x);
     }
 }
 
