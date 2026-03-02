@@ -40,7 +40,7 @@ class OperatorsPlus {
                 {
                     opcode: 'directionOfXY',
                     blockType: Scratch.BlockType.REPORTER,
-                    text: 'the direction of x: [wantedX] and y: [wantedY] from me',
+                    text: 'direction to x:[wantedX] y:[wantedY]',
                     arguments: {
                         wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
                         wantedY: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
@@ -49,17 +49,14 @@ class OperatorsPlus {
             ],
             menus: {
                 signsOfCosAndSinAndsoOn: {
-                    acceptReporters: false,
-                    items: ['cos', 'sin', 'tan', 'sqrt', 'abs']
-                },
-                inequalitySigns: {
-                    acceptReporters: false,
-                    items: ['>', '<', '=', '>=', '<=']
+                    acceptReporters: true,
+                    items: ['sin', 'cos', 'tan', 'asin', 'acos', 'atan']
                 }
             }
         };
     }
 
+    // --- Block Functions ---
     pi() {
         return Math.PI;
     }
@@ -71,36 +68,24 @@ class OperatorsPlus {
     SinAndCosStuff(args) {
         const num = parseFloat(args.NUMBER);
         switch (args.OPERATION) {
-            case 'cos': return Math.cos(num);
             case 'sin': return Math.sin(num);
+            case 'cos': return Math.cos(num);
             case 'tan': return Math.tan(num);
-            case 'sqrt': return Math.sqrt(num);
-            case 'abs': return Math.abs(num);
+            case 'asin': return Math.asin(num);
+            case 'acos': return Math.acos(num);
+            case 'atan': return Math.atan(num);
             default: return 0;
         }
     }
 
     IsBetween(args) {
-        const num = parseFloat(args.num);
-        const min = parseFloat(args.min);
-        const max = parseFloat(args.max);
-        // Corrected logic to handle min > max automatically
-        return (num >= Math.min(min, max) && num <= Math.max(min, max));
+        return args.num >= args.min && args.num <= args.max;
     }
 
     directionOfXY(args, util) {
-        // Renamed from directionofXY to match opcode
-        const target = util.target; // Cleaner way to get target
-        if (target) {
-            const x_position = target.x;
-            const y_position = target.y;
-            // atan2 is better for direction than atan
-            return (Math.atan2(args.wantedY - y_position, args.wantedX - x_position) * 180 / Math.PI) + 90;
-        } else {
-            return 0;
-        }
+        // Calculates angle to XY based on current sprite position
+        const dx = args.wantedX - util.target.x;
+        const dy = args.wantedY - util.target.y;
+        return (Math.atan2(dx, dy) * 180) / Math.PI;
     }
 }
-
-// Register the extension with Scratch/TurboWarp
-Scratch.extensions.register(new OperatorsPlus());
