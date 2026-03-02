@@ -42,7 +42,7 @@ class OperatorsPlus {
                     blockType: Scratch.BlockType.REPORTER,
                     text: 'direction to x:[wantedX] y:[wantedY]',
                     arguments: {
-                        wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
+                        wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 90 },
                         wantedY: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
                     }
                 }
