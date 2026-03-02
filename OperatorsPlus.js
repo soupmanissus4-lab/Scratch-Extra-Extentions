@@ -1,61 +1,60 @@
 class OperatorsPlus {
     getInfo() {
         return {
-            id: 'operatorsplus', 
-            name: 'Operators+', 
+            id: 'operatorsplus',
+            name: 'Operators+',
             blocks: [
                 {
-                    opcode: 'pi', 
-                    blockType: Scratch.BlockType.REPORTER, 
+                    opcode: 'pi',
+                    blockType: Scratch.BlockType.REPORTER,
                     text: 'π'
-                }, // Added missing comma
+                },
                 {
-                    opcode: 'power', 
-                    blockType: Scratch.BlockType.REPORTER, 
-                    text: '[NUMBER] ^ [POWER]', 
+                    opcode: 'power',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: '[NUMBER] ^ [POWER]',
                     arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, 
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 },
                         POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
                     }
-                }, // Added missing comma
+                },
                 {
-                    opcode: 'SinAndCosStuff', 
-                    blockType: Scratch.BlockType.REPORTER, 
-                    text: '[OPERATION] of [NUMBER]', 
+                    opcode: 'SinAndCosStuff',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: '[OPERATION] of [NUMBER]',
                     arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, 
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
                         OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
                     }
-                }, // Added missing comma
+                },
                 {
-                    opcode: 'IsBetween', 
-                    blockType: Scratch.BlockType.BOOLEAN, 
-                    text: 'is [num] inbetween [min] and [max]', 
+                    opcode: 'IsBetween',
+                    blockType: Scratch.BlockType.BOOLEAN,
+                    text: 'is [num] inbetween [min] and [max]',
                     arguments: {
-                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, 
-                        min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, 
+                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 },
+                        min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
                         max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
                     }
                 },
                 {
-                    opcode: 'directionOfXY', blockType: Scratch.BlockType.REPORTER, text: 'the direction of x: [wantedX] and y: [wantedY] from me', arguments: {
-                        wantedX: {
-                            type: Scratch.ArgumentType.NUMBER, defaultValue: 0
-                        }, wantedY: {
-                            type: Scratch.ArgumentType.NUMBER, defaultValue: 0
-                        }
+                    opcode: 'directionOfXY',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: 'the direction of x: [wantedX] and y: [wantedY] from me',
+                    arguments: {
+                        wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
+                        wantedY: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
                     }
-                },
-
-            ], 
+                }
+            ],
             menus: {
                 signsOfCosAndSinAndsoOn: {
-                    acceptReporters: false, 
-                    items: ['cos', 'sin', 'tan', 'sqrt', 'abs'] // Added missing commas
-                }, 
+                    acceptReporters: false,
+                    items: ['cos', 'sin', 'tan', 'sqrt', 'abs']
+                },
                 inequalitySigns: {
-                    acceptReporters: false, 
-                    items: ['>', '<', '=', '>=', '<='] // Added missing commas
+                    acceptReporters: false,
+                    items: ['>', '<', '=', '>=', '<=']
                 }
             }
         };
@@ -76,7 +75,7 @@ class OperatorsPlus {
             case 'sin': return Math.sin(num);
             case 'tan': return Math.tan(num);
             case 'sqrt': return Math.sqrt(num);
-            case 'abs': return Math.abs(num); // Completed missing case
+            case 'abs': return Math.abs(num);
             default: return 0;
         }
     }
@@ -85,25 +84,22 @@ class OperatorsPlus {
         const num = parseFloat(args.num);
         const min = parseFloat(args.min);
         const max = parseFloat(args.max);
-        if(min<=max){
-            return num >= min && num <= max; 
-        }
-        else if(min>=max){
-            return num <= min && num >= max; 
+        // Corrected logic to handle min > max automatically
+        return (num >= Math.min(min, max) && num <= Math.max(min, max));
+    }
+
+    directionOfXY(args, util) {
+        // Renamed from directionofXY to match opcode
+        const target = util.target; // Cleaner way to get target
+        if (target) {
+            const x_position = target.x;
+            const y_position = target.y;
+            // atan2 is better for direction than atan
+            return (Math.atan2(args.wantedY - y_position, args.wantedX - x_position) * 180 / Math.PI) + 90;
+        } else {
+            return 0;
         }
     }
-   directionofXY(args, util) {
-  const target = this.runtime.getTargetForStage();
-  if (target) {
-    const x_position = target.x; // Fixed: added '='
-    const y_position = target.y; // Fixed: added '='
-    return Math.atan(y_position / x_position);
-  } else {
-    return 0;
-  }
-}
-
-
 }
 
 // Register the extension with Scratch/TurboWarp
