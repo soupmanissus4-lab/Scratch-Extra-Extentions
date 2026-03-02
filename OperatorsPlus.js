@@ -92,10 +92,16 @@ class OperatorsPlus {
             return num <= min && num >= max; 
         }
     }
-    directionOfXY(args, util) {
-        const x_position = this.runtime.getTargetForStage().x; 
-        const y_position = this.runtime.getTargetForStage().y; 
-        return Math.abs(y_position / x_position);
+   directionofXY(args, util) {
+      const target = this.runtime.getTargetForStage();
+      if (target) {
+        const x_position = target.x;
+        const y_position = target.y;
+        return Math.atan(y_position / x_position);
+      } else {
+        // Handle the case where no target is found, e.g., return 0 or null
+        return 0; 
+      }
     }
 
 
