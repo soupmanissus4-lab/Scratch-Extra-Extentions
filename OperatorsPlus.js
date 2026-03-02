@@ -27,17 +27,6 @@ class OperatorsPlus {
             OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
           }
         },
-        {
-          opcode: 'xyCheck',
-          blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is x position [inequality] [xMin] or y position [inequalityTwo] [yMin]?',
-          arguments: {
-            inequality: { type: Scratch.ArgumentType.STRING, menu: 'inequalitySigns' },
-            xMin: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
-            inequalityTwo: { type: Scratch.ArgumentType.STRING, menu: 'inequalitySigns' },
-            yMin: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
-          }
-        }
       ],
       menus: {
         signsOfCosAndSinAndsoOn: {
@@ -71,18 +60,6 @@ class OperatorsPlus {
       case 'abs': return Math.abs(num);
       default: return 0;
     }
-  }
-
-  xyCheck(args) {
-    const compare = (val, op) => {
-      if (op === '>') return val > 0;
-      if (op === '<') return val < 0;
-      if (op === '=') return val === 0;
-      if (op === '>=') return val >= 0;
-      if (op === '<=') return val <= 0;
-      return false;
-    };
-    return compare(args.xMin, args.inequality) || compare(args.yMin, args.inequalityTwo);
   }
 }
 
