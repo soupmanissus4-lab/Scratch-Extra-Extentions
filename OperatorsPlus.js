@@ -38,14 +38,15 @@ class OperatorsPlus {
                     }
                 },
                 {
-                  opcode: 'directionOfXY',
-                  blockType: Scratch.BlockType.REPORTER,
-                  text: 'the direction of x: [wantedX] and y: [wantedY] from me',
-                  arguments: {
-                      wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 90},
-                      wantedY: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
-                  }
+                    opcode: 'directionOfXY', blockType: Scratch.BlockType.REPORTER, text: 'the direction of x: [wantedX] and y: [wantedY] from me', arguments: {
+                        wantedX: {
+                            type: Scratch.ArgumentType.NUMBER, defaultValue: 0
+                        }, wantedY: {
+                            type: Scratch.ArgumentType.NUMBER, defaultValue: 0
+                        }
+                    }
                 },
+
             ], 
             menus: {
                 signsOfCosAndSinAndsoOn: {
