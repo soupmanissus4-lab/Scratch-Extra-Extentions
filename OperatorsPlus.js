@@ -1,89 +1,63 @@
 class OperatorsPlus {
-  getInfo() {
-    return {
-      id: 'operatorsplus',
-      name: 'Operators+',
-      blocks: [
-        {
-          opcode: 'pi',
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'π'
-        },
-        {
-          opcode: 'power',
-          blockType: Scratch.BlockType.REPORTER,
-          text: '[NUMBER] ^ [POWER]',
-          arguments: {
-            NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 },
-            POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
-          }
-        },
-        {
-          opcode: 'SinAndCosStuff',
-          blockType: Scratch.BlockType.REPORTER,
-          text: '[OPERATION] of [NUMBER]',
-          arguments: {
-            NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
-            OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
-          }
-        },
-        {
-          opcode: 'Isbetween',
-          blockType: Scratch.BlockType.BOOLEAN,
-          text: 'is [num] inbetween [min] and [max]',
-          arguments: {
-            num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 },
-            min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
-            max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
-          }
-        },
-      ],
-      menus: {
-        signsOfCosAndSinAndsoOn: {
-          acceptReporters: false,
-          items: ['cos', 'sin', 'tan', 'sqrt', 'abs']
-        },
-        inequalitySigns: {
-          acceptReporters: false,
-          items: ['>', '<', '=', '>=', '<=']
+    getInfo() {
+        return {
+            id: 'operatorsplus', name: 'Operators+', blocks: [
+                {
+                    opcode: 'pi', blockType: Scratch.BlockType.REPORTER, text: 'π'
+                }{
+                    opcode: 'power', blockType: Scratch.BlockType.REPORTER, text: '[NUMBER] ^ [POWER]', arguments: {
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
+                    }
+                }{
+                    opcode: 'SinAndCosStuff', blockType: Scratch.BlockType.REPORTER, text: '[OPERATION] of [NUMBER]', arguments: {
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
+                    }
+                }{
+                    opcode: 'IsBetween'// Matches IsBetween below
+                    blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] inbetween [min] and [max]', arguments: {
+                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
+                    }
+                }], menus: {
+                signsOfCosAndSinAndsoOn: {
+                    acceptReporters: false, items: ['cos''sin''tan''sqrt''abs']
+                }, inequalitySigns: { // Defined but not used in blocks above
+                    acceptReporters: false, items: ['>''<''=''>=''<=']
+                }
+            }
+        };
+    }
+
+    pi() {
+        return Math.PI;
+    }
+
+    power(args) {
+        return Math.pow(args.NUMBER, args.POWER);
+    }
+
+    SinAndCosStuff(args) {
+        const num = args.NUMBER;
+        const operation = args.OPERATION;
+        switch (operation) {
+            case 'cos': return Math.cos(num);
+            case 'sin': return Math.sin(num);
+            case 'tan': return Math.tan(num);
+            case 'sqrt': return Math.sqrt(num);
+            case 'abs': return Math.abs(num);
+            default: return 0;
         }
-      }
-    };
-  }
-
-  pi() {
-    return Math.PI;
-  }
-
-  power(args) {
-    return Math.pow(args.NUMBER, args.POWER);
-  }
-
-  SinAndCosStuff(args) {
-    const num = args.NUMBER;
-    const operation = args.OPERATION;
-    switch (operation) {
-      case 'cos': return Math.cos(num);
-      case 'sin': return Math.sin(num);
-      case 'tan': return Math.tan(num);
-      case 'sqrt': return Math.sqrt(num);
-      case 'abs': return Math.abs(num);
-      default: return 0;
     }
-    
-    Isbetween(args){
-      const num = args.num;
-      const min = args.min;
-      const max = args.max;
-      if(min<max){
-        return num>=min && num<=max
-      }
-      else{
-        return num<=min && num>=max
-      }
-      return false;
+
+    IsBetween(args) {
+        const num = args.num;
+        const min = args.min;
+        const max = args.max;
+        if (min < max) {
+            return num >= min && num <= max;
+        } else {
+            return num <= min && num >= max;
+        }
     }
-  }
 }
 
 Scratch.extensions.register(new OperatorsPlus());
