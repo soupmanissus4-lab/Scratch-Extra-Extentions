@@ -78,8 +78,8 @@ class OperatorsPlus {
         if(min<=max){
             return num >= min && num <= max; 
         }
-        else{
-            return num >= max && num <= min; 
+        else if(min>=max){
+            return num <= min && num >= max; 
         }
     }
 }
