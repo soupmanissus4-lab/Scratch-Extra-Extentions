@@ -93,17 +93,10 @@ class OperatorsPlus {
         }
     }
     directionOfXY(args, util) {
-    const targetX = parseFloat(args.wantedX);
-    const targetY = parseFloat(args.wantedY);
-    const myX = util.target.x;
-    const myY = util.target.y;
-    const dx = targetX - myX;
-    const dy = targetY - myY;
-    
-    let direction = Math.atan2(dx, dy) * 180 / Math.PI;
-
-    return direction;
-}
+        const x_position = this.runtime.getTargetForStage().x; 
+        const y_position = this.runtime.getTargetForStage().y; 
+        return Math.abs(y_position / x_position);
+    }
 
 
 }
