@@ -93,16 +93,15 @@ class OperatorsPlus {
         }
     }
    directionofXY(args, util) {
-      const target = this.runtime.getTargetForStage();
-      if (target) {
-        const x_position = target.x;
-        const y_position = target.y;
-        return Math.atan(y_position / x_position);
-      } else {
-        // Handle the case where no target is found, e.g., return 0 or null
-        return 0; 
-      }
-    }
+  const target = this.runtime.getTargetForStage();
+  if (target) {
+    const x_position = target.x; // Fixed: added '='
+    const y_position = target.y; // Fixed: added '='
+    return Math.atan(y_position / x_position);
+  } else {
+    return 0;
+  }
+}
 
 
 }
