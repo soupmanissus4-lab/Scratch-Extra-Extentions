@@ -91,10 +91,19 @@ class OperatorsPlus {
             return num <= min && num >= max; 
         }
     }
-    directionOfXY(args,util) {
-        const {x, y} = util.target;
-        return Math.atan2(wantedY - y, wantedX - x);
-    }
+    directionOfXY(args, util) {
+    const targetX = parseFloat(args.wantedX);
+    const targetY = parseFloat(args.wantedY);
+    const myX = util.target.x;
+    const myY = util.target.y;
+    const dx = targetX - myX;
+    const dy = targetY - myY;
+    
+    let direction = Math.atan2(dx, dy) * 180 / Math.PI;
+
+    return direction;
+}
+
 
 }
 
