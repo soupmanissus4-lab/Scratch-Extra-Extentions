@@ -49,7 +49,6 @@ class OperatorsPlus {
             ],
             menus: {
                 signsOfCosAndSinAndsoOn: {
-                    acceptReporters: true,
                     items: ['sin', 'cos', 'tan', 'asin', 'acos', 'atan']
                 }
             }
@@ -60,13 +59,11 @@ class OperatorsPlus {
     pi() {
         return Math.PI;
     }
-
     power(args) {
         return Math.pow(args.NUMBER, args.POWER);
     }
-
     SinAndCosStuff(args) {
-        const num = parseFloat(args.NUMBER);
+        const num = args.NUMBER;
         switch (args.OPERATION) {
             case 'sin': return Math.sin(num);
             case 'cos': return Math.cos(num);
@@ -77,13 +74,10 @@ class OperatorsPlus {
             default: return 0;
         }
     }
-
     IsBetween(args) {
         return args.num >= args.min && args.num <= args.max;
     }
-
     directionOfXY(args, util) {
-        // Calculates angle to XY based on current sprite position
         const dx = args.wantedX - util.target.x;
         const dy = args.wantedY - util.target.y;
         return (Math.atan2(dx, dy) * 180) / Math.PI;
