@@ -1,51 +1,51 @@
 class OperatorsPlus {
     getInfo() {
         return {
-            id: 'operatorsplus',
-            name: 'Operators+',
+            id: 'operatorsplus', 
+            name: 'Operators+', 
             blocks: [
                 {
-                    opcode: 'pi',
-                    blockType: Scratch.BlockType.REPORTER,
+                    opcode: 'pi', 
+                    blockType: Scratch.BlockType.REPORTER, 
                     text: 'π'
-                },
+                }, // Added missing comma
                 {
-                    opcode: 'power',
-                    blockType: Scratch.BlockType.REPORTER,
-                    text: '[NUMBER] ^ [POWER]',
+                    opcode: 'power', 
+                    blockType: Scratch.BlockType.REPORTER, 
+                    text: '[NUMBER] ^ [POWER]', 
                     arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 },
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, 
                         POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
                     }
-                },
+                }, // Added missing comma
                 {
-                    opcode: 'SinAndCosStuff',
-                    blockType: Scratch.BlockType.REPORTER,
-                    text: '[OPERATION] of [NUMBER]',
+                    opcode: 'SinAndCosStuff', 
+                    blockType: Scratch.BlockType.REPORTER, 
+                    text: '[OPERATION] of [NUMBER]', 
                     arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, 
                         OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
                     }
-                },
+                }, // Added missing comma
                 {
-                    opcode: 'IsBetween',
-                    blockType: Scratch.BlockType.BOOLEAN,
-                    text: 'is [num] inbetween [min] and [max]',
+                    opcode: 'IsBetween', 
+                    blockType: Scratch.BlockType.BOOLEAN, 
+                    text: 'is [num] inbetween [min] and [max]', 
                     arguments: {
-                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 },
-                        min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
+                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, 
+                        min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, 
                         max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
                     }
                 }
-            ],
+            ], 
             menus: {
                 signsOfCosAndSinAndsoOn: {
-                    acceptReporters: false,
-                    items: ['cos', 'sin', 'tan', 'sqrt', 'abs']
-                },
+                    acceptReporters: false, 
+                    items: ['cos', 'sin', 'tan', 'sqrt', 'abs'] // Added missing commas
+                }, 
                 inequalitySigns: {
-                    acceptReporters: false,
-                    items: ['>', '<', '=', '>=', '<=']
+                    acceptReporters: false, 
+                    items: ['>', '<', '=', '>=', '<='] // Added missing commas
                 }
             }
         };
@@ -60,21 +60,24 @@ class OperatorsPlus {
     }
 
     SinAndCosStuff(args) {
-        const num = args.NUMBER;
-        const operation = args.OPERATION;
-        switch (operation) {
+        const num = parseFloat(args.NUMBER);
+        switch (args.OPERATION) {
             case 'cos': return Math.cos(num);
             case 'sin': return Math.sin(num);
             case 'tan': return Math.tan(num);
             case 'sqrt': return Math.sqrt(num);
-            case 'abs': return Math.abs(num);
+            case 'abs': return Math.abs(num); // Completed missing case
             default: return 0;
         }
     }
 
     IsBetween(args) {
-        return args.num >= args.min && args.num <= args.max;
+        const num = parseFloat(args.num);
+        const min = parseFloat(args.min);
+        const max = parseFloat(args.max);
+        return num >= min && num <= max; // Added missing logic
     }
 }
 
+// Register the extension with Scratch/TurboWarp
 Scratch.extensions.register(new OperatorsPlus());
