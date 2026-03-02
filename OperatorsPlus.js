@@ -1,27 +1,51 @@
 class OperatorsPlus {
     getInfo() {
         return {
-            id: 'operatorsplus', name: 'Operators+', blocks: [
+            id: 'operatorsplus',
+            name: 'Operators+',
+            blocks: [
                 {
-                    opcode: 'pi', blockType: Scratch.BlockType.REPORTER, text: 'π'
-                }{
-                    opcode: 'power', blockType: Scratch.BlockType.REPORTER, text: '[NUMBER] ^ [POWER]', arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
+                    opcode: 'pi',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: 'π'
+                },
+                {
+                    opcode: 'power',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: '[NUMBER] ^ [POWER]',
+                    arguments: {
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 },
+                        POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
                     }
-                }{
-                    opcode: 'SinAndCosStuff', blockType: Scratch.BlockType.REPORTER, text: '[OPERATION] of [NUMBER]', arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
+                },
+                {
+                    opcode: 'SinAndCosStuff',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: '[OPERATION] of [NUMBER]',
+                    arguments: {
+                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
+                        OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
                     }
-                }{
-                    opcode: 'IsBetween'// Matches IsBetween below
-                    blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] inbetween [min] and [max]', arguments: {
-                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
+                },
+                {
+                    opcode: 'IsBetween',
+                    blockType: Scratch.BlockType.BOOLEAN,
+                    text: 'is [num] inbetween [min] and [max]',
+                    arguments: {
+                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 },
+                        min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
+                        max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
                     }
-                }], menus: {
+                }
+            ],
+            menus: {
                 signsOfCosAndSinAndsoOn: {
-                    acceptReporters: false, items: ['cos''sin''tan''sqrt''abs']
-                }, inequalitySigns: { // Defined but not used in blocks above
-                    acceptReporters: false, items: ['>''<''=''>=''<=']
+                    acceptReporters: false,
+                    items: ['cos', 'sin', 'tan', 'sqrt', 'abs']
+                },
+                inequalitySigns: {
+                    acceptReporters: false,
+                    items: ['>', '<', '=', '>=', '<=']
                 }
             }
         };
@@ -49,14 +73,7 @@ class OperatorsPlus {
     }
 
     IsBetween(args) {
-        const num = args.num;
-        const min = args.min;
-        const max = args.max;
-        if (min < max) {
-            return num >= min && num <= max;
-        } else {
-            return num <= min && num >= max;
-        }
+        return args.num >= args.min && args.num <= args.max;
     }
 }
 
