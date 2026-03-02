@@ -91,7 +91,7 @@ class OperatorsPlus {
             return num <= min && num >= max; 
         }
     }
-    directionOfXY(args) {
+    directionOfXY(args,util) {
         const {x, y} = util.target;
         return Math.atan2(wantedY - y, wantedX - x);
     }
