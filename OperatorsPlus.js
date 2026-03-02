@@ -75,7 +75,12 @@ class OperatorsPlus {
         const num = parseFloat(args.num);
         const min = parseFloat(args.min);
         const max = parseFloat(args.max);
-        return num >= min && num <= max; // Added missing logic
+        if(min<=max){
+            return num >= min && num <= max; 
+        }
+        else{
+            return num >= max && num <= min; 
+        }
     }
 }
 
