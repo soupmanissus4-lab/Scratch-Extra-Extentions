@@ -14,8 +14,14 @@ class OperatorsPlus {
                     blockType: Scratch.BlockType.REPORTER,
                     text: '[NUMBER] ^ [POWER]',
                     arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 },
-                        POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }
+                        NUMBER: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 10
+                        },
+                        POWER: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 2
+                        }
                     }
                 },
                 {
@@ -23,8 +29,14 @@ class OperatorsPlus {
                     blockType: Scratch.BlockType.REPORTER,
                     text: '[OPERATION] of [NUMBER]',
                     arguments: {
-                        NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
-                        OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' }
+                        NUMBER: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 0
+                        },
+                        OPERATION: {
+                            type: Scratch.ArgumentType.STRING,
+                            menu: 'signsOfCosAndSinAndsoOn'
+                        }
                     }
                 },
                 {
@@ -32,9 +44,18 @@ class OperatorsPlus {
                     blockType: Scratch.BlockType.BOOLEAN,
                     text: 'is [num] inbetween [min] and [max]',
                     arguments: {
-                        num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 },
-                        min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
-                        max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
+                        num: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 3
+                        },
+                        min: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 1
+                        },
+                        max: {
+                            type: Scratch.ArgumentType.NUMBER,
+                            defaultValue: 5
+                        }
                     }
                 },
             ],
@@ -50,11 +71,13 @@ class OperatorsPlus {
     pi() {
         return Math.PI;
     }
+
     power(args) {
         return Math.pow(args.NUMBER, args.POWER);
     }
+
     SinAndCosStuff(args) {
-        const num = args.NUMBER;
+        const num = parseFloat(args.NUMBER);
         switch (args.OPERATION) {
             case 'sin': return Math.sin(num);
             case 'cos': return Math.cos(num);
@@ -65,6 +88,7 @@ class OperatorsPlus {
             default: return 0;
         }
     }
+
     IsBetween(args) {
         return args.num >= args.min && args.num <= args.max;
     }
