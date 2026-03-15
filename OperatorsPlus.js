@@ -37,15 +37,6 @@ class OperatorsPlus {
                         max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
                     }
                 },
-                {
-                    opcode: 'directionOfXY',
-                    blockType: Scratch.BlockType.REPORTER,
-                    text: 'direction to x:[wantedX] y:[wantedY]',
-                    arguments: {
-                        wantedX: { type: Scratch.ArgumentType.NUMBER, defaultValue: 90 },
-                        wantedY: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }
-                    }
-                }
             ],
             menus: {
                 signsOfCosAndSinAndsoOn: {
@@ -76,10 +67,5 @@ class OperatorsPlus {
     }
     IsBetween(args) {
         return args.num >= args.min && args.num <= args.max;
-    }
-    directionOfXY(args, util) {
-        const dx = args.wantedX - util.target.x;
-        const dy = args.wantedY - util.target.y;
-        return (Math.atan2(dx, dy) * 180) / Math.PI;
     }
 }
