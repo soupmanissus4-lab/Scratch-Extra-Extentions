@@ -100,12 +100,23 @@ class OperatorsPlus {
             min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 },
             max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 }
           }
+        },
+        {
+          opcode: 'equalities',
+          blockType: Scratch.BlockType.BOOLEAN,
+          text: 'is [num] [sign] [otherNum]',
+          arguments: {
+            num: { type: Scratch.ArgumentType.NUMBER},
+            otherNum: { type: Scratch.ArgumentType.NUMBER},
+            sign: { type: Scratch.ArgumentType.STRING}
+          }
         }
       ],
       menus: {
         signsOfCosAndSinAndsoOn: { acceptReporters: false, items: ['cos', 'sin', 'tan', 'sqrt'] },
         caseMenu: { acceptReporters: false, items: ['uppercase', 'lowercase'] },
-        decimalPlaces: { acceptReporters: true, items: ['1', '0.1', '0.01', '0.001', '0.0001'] }
+        decimalPlaces: { acceptReporters: true, items: ['1', '0.1', '0.01', '0.001', '0.0001'] },
+        inequalitys: { acceptReporters: false, items: ['equal to','greater than','less than','greater than or equal to','less than or equal to']}
       }
     };
   }
@@ -174,6 +185,29 @@ class OperatorsPlus {
     const min = Number(args.min);
     const max = Number(args.max);
       return (num >= min && num <= max)||(num<=min&&num>=max);
-}
+  }
+
+  equalities(args) {
+    const num = args.num;
+    const otherNum = args.otherNum;
+    const sign = args.sign;
+    switch(sign){
+      case("equal to"){
+        return num == otherNum;
+      }
+      case("greater than"){
+        return num > otherNum;
+      }
+      case("less than"){
+        return num < otherNum;
+      }
+      case("greater than or equal to"){
+        return num >= otherNum;
+      }
+      case("less than or equal to"){
+        return num <= otherNum
+      }
+    }
+  }
 
 Scratch.extensions.register(new OperatorsPlus());
