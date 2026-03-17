@@ -173,13 +173,7 @@ class OperatorsPlus {
     const num = Number(args.num);
     const min = Number(args.min);
     const max = Number(args.max);
-    if(min<max){
-      return num >= min && num <= max;
-    }
-    else{
-      return num >= max && num <= min;
-    }
-  }
+      return (num >= min && num <= max)||(num<=min&&num>=max);
 }
 
 Scratch.extensions.register(new OperatorsPlus());
