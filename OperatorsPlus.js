@@ -19,7 +19,7 @@ class OperatorsPlus {
         { opcode: 'pointTowardsXY', blockType: Scratch.BlockType.COMMAND, text: 'point towards x: [X] y: [Y]', arguments: { X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, Y: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 } } },
         { opcode: 'Isbetween', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] inbetween [min] and [max]?', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 } } },
         { opcode: 'equalities', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] [sign] [otherNum]', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, otherNum: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, sign: { type: Scratch.ArgumentType.STRING, menu: 'inequalitys' } } },
-        { opcode: 'occurencesIn', blockType: Scratch.BlockType.REPORTER, text: 'occurrences of [text] in [mainText]', arguments: {text: Scratch.ArgumentType.STRING,mainText: Scratch.ArgumentType.STRING}}
+        { opcode: 'occurencesIn', blockType: Scratch.BlockType.REPORTER, text: 'occurrences of [text] in [mainText]', arguments: { text: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple' }, mainText: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple banana apple' } } }
       ],
       menus: {
         signsOfCosAndSinAndsoOn: { acceptReporters: false, items: ['cos', 'sin', 'tan', 'sqrt'] },
@@ -30,8 +30,13 @@ class OperatorsPlus {
     };
   }
 
-  pi() { return Math.PI; }
-  power(args) { return Math.pow(args.NUMBER, args.POWER); }
+  pi() {
+    return Math.PI;
+  }
+
+  power(args) {
+    return Math.pow(args.NUMBER, args.POWER);
+  }
 
   SinAndCosStuff(args) {
     const val = args.NUMBER;
@@ -46,8 +51,10 @@ class OperatorsPlus {
     }
   }
 
-  strictEquality(args) { return String(args.text) === String(args.strictText); }
-  
+  strictEquality(args) {
+    return String(args.text) === String(args.strictText);
+  }
+
   replaceAll(args) {
     return String(args.original).split(String(args.text)).join(String(args.replacementText));
   }
@@ -65,6 +72,10 @@ class OperatorsPlus {
     const root = args.ROOT;
     const value = args.VALUE;
     if (root === 0) return 0;
+    // Fix for negative numbers and odd roots (e.g. cube root of -8)
+    if (value < 0 && root % 2 !== 0) {
+      return -Math.pow(-value, 1 / root);
+    }
     return Math.pow(value, 1 / root);
   }
 
@@ -78,6 +89,7 @@ class OperatorsPlus {
   pointTowardsXY(args, util) {
     const dx = args.X - util.target.x;
     const dy = args.Y - util.target.y;
+    if (dx === 0 && dy === 0) return; // Prevent glitching if target matches position
     const radians = Math.atan2(dx, dy);
     util.target.setDirection(radians * (180 / Math.PI));
   }
@@ -100,10 +112,13 @@ class OperatorsPlus {
       case 'less than or equal to': return num <= otherNum;
       default: return false;
     }
-    occurencesIn(args) {
-      const occurrences = text.match(new RegExp(wordToFind, 'g')) || [];
-      return occurrences.length
-    }
+  }
+
+  occurencesIn(args) {
+    const mainText = String(args.mainText);
+    const subText = String(args.text);
+    if (!subText) return 0; // Prevent infinite loops or NaN if string is empty
+    return mainText.split(subText).length - 1;
   }
 }
 
