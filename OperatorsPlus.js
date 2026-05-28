@@ -18,7 +18,8 @@ class OperatorsPlus {
         { opcode: 'nearestDot', blockType: Scratch.BlockType.REPORTER, text: 'round [number] to the nearest [decimal]', arguments: { number: { type: Scratch.ArgumentType.NUMBER }, decimal: { type: Scratch.ArgumentType.STRING, menu: 'decimalPlaces' } } },
         { opcode: 'pointTowardsXY', blockType: Scratch.BlockType.COMMAND, text: 'point towards x: [X] y: [Y]', arguments: { X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, Y: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 } } },
         { opcode: 'Isbetween', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] inbetween [min] and [max]?', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 } } },
-        { opcode: 'equalities', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] [sign] [otherNum]', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, otherNum: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, sign: { type: Scratch.ArgumentType.STRING, menu: 'inequalitys' } } }
+        { opcode: 'equalities', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] [sign] [otherNum]', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, otherNum: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, sign: { type: Scratch.ArgumentType.STRING, menu: 'inequalitys' } } },
+        { opcode: 'occurencesIn', blockType: Scratch.BlockType.REPORTER, text: 'occurrences of [text] in [mainText]', arguments: {text: Scratch.ArgumentType.STRING,mainText: Scratch.ArgumentType.STRING}}
       ],
       menus: {
         signsOfCosAndSinAndsoOn: { acceptReporters: false, items: ['cos', 'sin', 'tan', 'sqrt'] },
@@ -98,6 +99,10 @@ class OperatorsPlus {
       case 'greater than or equal to': return num >= otherNum;
       case 'less than or equal to': return num <= otherNum;
       default: return false;
+    }
+    occurencesIn(args) {
+      const occurrences = text.match(new RegExp(wordToFind, 'g')) || [];
+      return occurrences.length
     }
   }
 }
