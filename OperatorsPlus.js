@@ -7,6 +7,7 @@ class OperatorsPlus {
       color2: '#0099CC',
       color3: '#007A99',
       blocks: [
+        // --- Original Blocks ---
         { opcode: 'pi', blockType: Scratch.BlockType.REPORTER, disableMonitor: true, text: 'pi' },
         { opcode: 'power', blockType: Scratch.BlockType.REPORTER, text: '[NUMBER] ^ [POWER]', arguments: { NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 } } },
         { opcode: 'SinAndCosStuff', blockType: Scratch.BlockType.REPORTER, text: '[OPERATION] of [NUMBER]', arguments: { NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' } } },
@@ -19,7 +20,11 @@ class OperatorsPlus {
         { opcode: 'pointTowardsXY', blockType: Scratch.BlockType.COMMAND, text: 'point towards x: [X] y: [Y]', arguments: { X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, Y: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 } } },
         { opcode: 'Isbetween', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] inbetween [min] and [max]?', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, min: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, max: { type: Scratch.ArgumentType.NUMBER, defaultValue: 5 } } },
         { opcode: 'equalities', blockType: Scratch.BlockType.BOOLEAN, text: 'is [num] [sign] [otherNum]', arguments: { num: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, otherNum: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, sign: { type: Scratch.ArgumentType.STRING, menu: 'inequalitys' } } },
-        { opcode: 'occurencesIn', blockType: Scratch.BlockType.REPORTER, text: 'occurrences of [text] in [mainText]', arguments: { text: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple' }, mainText: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple banana apple' } } }
+        { opcode: 'occurencesIn', blockType: Scratch.BlockType.REPORTER, text: 'occurrences of [text] in [mainText]', arguments: { text: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple' }, mainText: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple banana apple' } } },
+        { opcode: 'logBase', blockType: Scratch.BlockType.REPORTER, text: 'log base [BASE] of [VALUE]', arguments: { BASE: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }, VALUE: { type: Scratch.ArgumentType.NUMBER, defaultValue: 8 } } },
+        { opcode: 'vectorMagnitude', blockType: Scratch.BlockType.REPORTER, text: 'length of vector x: [X] y: [Y] z: [Z]', arguments: { X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, Y: { type: Scratch.ArgumentType.NUMBER, defaultValue: 4 }, Z: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 } } },
+        { opcode: 'distance3D', blockType: Scratch.BlockType.REPORTER, text: 'distance from x1: [X1] y1: [Y1] z1: [Z1] to x2: [X2] y2: [Y2] z2: [Z2]', arguments: { X1: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, Y1: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, Z1: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, X2: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, Y2: { type: Scratch.ArgumentType.NUMBER, defaultValue: 4 }, Z2: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 } } },
+        { opcode: 'matrixDeterminant2x2', blockType: Scratch.BlockType.REPORTER, text: 'determinant of 2x2 matrix [A] [B] [C] [D]', arguments: { A: { type: Scratch.ArgumentType.NUMBER, defaultValue: 1 }, B: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 }, C: { type: Scratch.ArgumentType.NUMBER, defaultValue: 3 }, D: { type: Scratch.ArgumentType.NUMBER, defaultValue: 4 } } }
       ],
       menus: {
         signsOfCosAndSinAndsoOn: { acceptReporters: false, items: ['cos', 'sin', 'tan', 'sqrt'] },
@@ -30,13 +35,9 @@ class OperatorsPlus {
     };
   }
 
-  pi() {
-    return Math.PI;
-  }
+  pi() { return Math.PI; }
 
-  power(args) {
-    return Math.pow(args.NUMBER, args.POWER);
-  }
+  power(args) { return Math.pow(args.NUMBER, args.POWER); }
 
   SinAndCosStuff(args) {
     const val = args.NUMBER;
@@ -51,17 +52,11 @@ class OperatorsPlus {
     }
   }
 
-  strictEquality(args) {
-    return String(args.text) === String(args.strictText);
-  }
+  strictEquality(args) { return String(args.text) === String(args.strictText); }
 
-  replaceAll(args) {
-    return String(args.original).split(String(args.text)).join(String(args.replacementText));
-  }
+  replaceAll(args) { return String(args.original).split(String(args.text)).join(String(args.replacementText)); }
 
-  replace(args) {
-    return String(args.original).replace(String(args.text), String(args.replacementText));
-  }
+  replace(args) { return String(args.original).replace(String(args.text), String(args.replacementText)); }
 
   convertCase(args) {
     const text = String(args.TEXT);
@@ -72,10 +67,7 @@ class OperatorsPlus {
     const root = args.ROOT;
     const value = args.VALUE;
     if (root === 0) return 0;
-    // Fix for negative numbers and odd roots (e.g. cube root of -8)
-    if (value < 0 && root % 2 !== 0) {
-      return -Math.pow(-value, 1 / root);
-    }
+    if (value < 0 && root % 2 !== 0) return -Math.pow(-value, 1 / root);
     return Math.pow(value, 1 / root);
   }
 
@@ -89,7 +81,7 @@ class OperatorsPlus {
   pointTowardsXY(args, util) {
     const dx = args.X - util.target.x;
     const dy = args.Y - util.target.y;
-    if (dx === 0 && dy === 0) return; // Prevent glitching if target matches position
+    if (dx === 0 && dy === 0) return;
     const radians = Math.atan2(dx, dy);
     util.target.setDirection(radians * (180 / Math.PI));
   }
@@ -117,8 +109,36 @@ class OperatorsPlus {
   occurencesIn(args) {
     const mainText = String(args.mainText);
     const subText = String(args.text);
-    if (!subText) return 0; // Prevent infinite loops or NaN if string is empty
+    if (!subText) return 0;
     return mainText.split(subText).length - 1;
+}
+  logBase(args) {
+    const base = Number(args.BASE);
+    const value = Number(args.VALUE);
+    if (base <= 0 || base === 1 || value <= 0) return NaN;
+    return Math.log(value) / Math.log(base);
+  }
+
+  vectorMagnitude(args) {
+    const x = Number(args.X);
+    const y = Number(args.Y);
+    const z = Number(args.Z);
+    return Math.sqrt(x * x + y * y + z * z);
+  }
+
+  distance3D(args) {
+    const dx = Number(args.X2) - Number(args.X1);
+    const dy = Number(args.Y2) - Number(args.Y1);
+    const dz = Number(args.Z2) - Number(args.Z1);
+    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+  }
+
+  matrixDeterminant2x2(args) {
+    const a = Number(args.A);
+    const b = Number(args.B);
+    const c = Number(args.C);
+    const d = Number(args.D);
+    return (a * d) - (b * c);
   }
 }
 
