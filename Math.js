@@ -41,7 +41,7 @@ class MathExtension {
     }
 
     pi(args) {
-        return 3.14159265357;
+        return Math.PI();
     }
 
     whenIsEqual(args) {
