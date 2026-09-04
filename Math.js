@@ -60,7 +60,7 @@ class MathExtension {
             case '+':
                 return (num + otherNum) === answer;
         }
-        return false;
+        return "error: not a item type";
     }
 }
 
