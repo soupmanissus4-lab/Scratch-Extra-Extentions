@@ -1,3 +1,10 @@
+// Name: Operators+
+// ID: operatorsplus
+// Description: Extra blocks for operators section.
+// By: SoupManIsSus_5
+// Original: TestMuffin
+// License: MPL-2.0
+
 class OperatorsPlus {
   getInfo() {
     return {
@@ -8,8 +15,15 @@ class OperatorsPlus {
       color3: '#007A99',
       blocks: [
         // --- Original Blocks ---
-        { opcode: 'pi', blockType: Scratch.BlockType.REPORTER, disableMonitor: true, text: 'pi' },
-        { opcode: 'power', blockType: Scratch.BlockType.REPORTER, text: '[NUMBER] ^ [POWER]', arguments: { NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 } } },
+        { 
+          opcode: 'pi',
+          blockType: Scratch.BlockType.REPORTER,
+          disableMonitor: true, text: 'pi'
+        },
+        { 
+          opcode: 'power',
+          blockType: Scratch.BlockType.REPORTER,
+          text: '[NUMBER] ^ [POWER]', arguments: { NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 10 }, POWER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 2 } } },
         { opcode: 'SinAndCosStuff', blockType: Scratch.BlockType.REPORTER, text: '[OPERATION] of [NUMBER]', arguments: { NUMBER: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 }, OPERATION: { type: Scratch.ArgumentType.STRING, menu: 'signsOfCosAndSinAndsoOn' } } },
         { opcode: 'strictEquality', blockType: Scratch.BlockType.BOOLEAN, text: '[text] strictly equals [strictText]', arguments: { text: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple' }, strictText: { type: Scratch.ArgumentType.STRING, defaultValue: 'APPLE' } } },
         { opcode: 'replaceAll', blockType: Scratch.BlockType.REPORTER, text: 'replace all [text] in [original] with [replacementText]', arguments: { text: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple' }, original: { type: Scratch.ArgumentType.STRING, defaultValue: 'apple banana apple' }, replacementText: { type: Scratch.ArgumentType.STRING, defaultValue: 'orange' } } },
