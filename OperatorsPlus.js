@@ -2,7 +2,7 @@
 // ID: operatorsplus
 // Description: Extra blocks for operators section.
 // By: SoupManIsSus_5
-// Original: TestMuffin
+// Original: Turbowarp
 // License: MPL-2.0
 
 class OperatorsPlus {
