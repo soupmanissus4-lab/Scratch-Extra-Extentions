@@ -4,7 +4,7 @@
 // By: SoupManIsSus_5
 // Original: Turbowarp
 // License: MPL-2.0
-
+Scratch.Translate(
 class OperatorsPlus {
   getInfo() {
     return {
@@ -319,5 +319,5 @@ class OperatorsPlus {
     }
   }
 }
-
+)
 Scratch.extensions.register(new OperatorsPlus());
