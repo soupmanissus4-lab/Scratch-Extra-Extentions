@@ -2,7 +2,6 @@
 // ID: operatorsplus
 // Description: Extra blocks for operators section.
 // By: SoupManIsSus_5
-// Original: Turbowarp
 // License: MPL-2.0
 Scratch.Translate(
 class OperatorsPlus {
