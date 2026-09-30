@@ -7,19 +7,19 @@ class MathExtension {
             {
                 opcode: 'pi',
                 blockType: Scratch.BlockType.REPORTER,
-                text: 'pi',
+                text: Scratch.translate('pi'),
                 arguments: {}
             },
             {
                 opcode: 'e',
                 blockType: Scratch.BlockType.REPORTER,
-                text: 'e',
+                text: Scratch.translate('e'),
                 arguments: {}
             },
             {
                 opcode: 'evenOrOdd',
                 blockType: Scratch.BlockType.REPORTER,
-                text: 'is [NUM] even or odd?',
+                text: Scratch.translate('is [NUM] even or odd?'),
                 arguments: {
                     NUM: {
                         type: Scratch.ArgumentType.NUMBER,
@@ -30,7 +30,7 @@ class MathExtension {
             {
                 opcode: 'whenIsEqual',
                 blockType: Scratch.BlockType.BOOLEAN,
-                text: 'is [number] [operation] [numberTwo] = [answer]?',
+                text: Scratch.translate('is [number] [operation] [numberTwo] = [answer]?'),
                 arguments: {
                     number: {
                         type: Scratch.ArgumentType.NUMBER,
