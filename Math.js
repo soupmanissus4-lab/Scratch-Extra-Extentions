@@ -1,7 +1,13 @@
+// Name: Math
+// ID: math
+// Description: A math extention for extra blocks.
+// By: SoupManIsSus_5
+// License: MPL-2.0
+
 class MathExtension {
     getInfo() {
         return {
-            id: 'mathextension',
+            id: 'math',
             name: 'Math',
             blocks: [
             {
