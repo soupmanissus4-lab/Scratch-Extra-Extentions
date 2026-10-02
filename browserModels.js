@@ -12,37 +12,37 @@ class BrowserModels{
       blocks: [
         {
           opcode: 'showAlert',
-          blockType: 'command',
+          blockType: Scratch.BlockType.COMMAND,
           text: 'trigger browser alert [MSG]',
           arguments: {
             MSG: {
-              type: 'string',
+              type: Scratch.ArgumentType.STRING,
               defaultValue: 'Hello World!'
             }
           }
         },
         {
           opcode: 'showConfirm',
-          blockType: 'boolean',
+          blockType: Scratch.BlockType.BOOLEAN,
           text: 'browser confirm [QUESTION]?',
           arguments: {
             QUESTION: {
-              type: 'string',
+              type: Scratch.ArgumentType.STRING,
               defaultValue: 'Do you want to continue?'
             }
           }
         },
         {
           opcode: 'showPrompt',
-          blockType: 'reporter',
+          blockType: Scratch.BlockType.REPORTER,
           text: 'browser prompt [QUESTION] with default [DEFAULT]',
           arguments: {
             QUESTION: {
-              type: 'string',
+              type: Scratch.ArgumentType.STRING,
               defaultValue: 'What is your name?'
             },
             DEFAULT: {
-              type: 'string',
+              type: Scratch.ArgumentType.STRING,
               defaultValue: 'Scratcher'
             }
           }
