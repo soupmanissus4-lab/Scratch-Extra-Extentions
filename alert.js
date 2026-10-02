@@ -6,7 +6,7 @@
 
 var response = "";
 
-class RandomExtension {
+class Alert {
     getInfo() {
         return {
             id: 'alert',
@@ -57,19 +57,19 @@ class RandomExtension {
     }
   alerting(args){
     const alerttext = args.alertText;
-    windows.alert(alerttext);
+    window.alert(alerttext);
   }
   confirming(args){
     const alerttext = args.alertText;
-    response = windows.confirm(alerttext);
+    response = window.confirm(alerttext);
   }
   prompt(args){
     const alerttext = args.alertText;
-    response = windows.prompt(alerttext);
+    response = window.prompt(alerttext);
   }
   response(args){
     return response;
   }
 }
 
-Scratch.extensions.register(new RandomExtension());
+Scratch.extensions.register(new Alert());
