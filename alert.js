@@ -57,15 +57,15 @@ class RandomExtension {
     }
   alerting(args){
     const alerttext = args.alertText;
-    alert(alerttext);
+    windows.alert(alerttext);
   }
   confirming(args){
     const alerttext = args.alertText;
-    response = confirm(alerttext);
+    response = windows.confirm(alerttext);
   }
   prompt(args){
     const alerttext = args.alertText;
-    response = prompt(alerttext);
+    response = windows.prompt(alerttext);
   }
   response(args){
     return response;
