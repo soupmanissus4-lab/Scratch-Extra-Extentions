@@ -4,6 +4,10 @@
 // By: SoupManIsSus_5
 // License: MPL-2.0
 
+if (!Scratch.extensions.unsandboxed) {
+  throw new Error('This extension must run unsandboxed to use alert');
+}
+
 var response = "";
 
 class Alert {
